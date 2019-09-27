@@ -1,6 +1,6 @@
-# Docker, Django, PostgreSQL starter
+# Docker, Django, PostgreSQL starter (Incomplete, work-in-progress)
 
-This is simple starter for a
+This will be a simple starter for a
 [Django](https://www.djangoproject.com/) app with a
 [PostgreSQL](https://www.postgresql.org/) backend
 running inside [Docker](https://www.docker.com/)
