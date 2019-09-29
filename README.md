@@ -32,3 +32,22 @@ The requirements for this project are as follows. As a developer...
 7. I can practice test driven development.
 8. I can write end-to-end tests and run them in development.
 9. I can use continuous deployment with GitHub and [Heroku Pipelines](https://devcenter.heroku.com/articles/pipelines).
+
+## Bootstrapping new deployment
+
+If you're deploying to a fresh environment, you'll
+need to run the following
+
+```
+docker-compose exec web python manage.py migrate auth
+docker-compose exec web python manage.py migrate
+```
+
+There are some data migrations, e.g. `./web/awaydays/migrations/0001_initial.py` will add a super user based on the following
+environment variables:
+
+```
+SUPERUSER_USERNAME
+SUPERUSER_PASSWORD
+SUPERUSER_EMAIL
+```
