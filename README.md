@@ -51,3 +51,7 @@ SUPERUSER_USERNAME
 SUPERUSER_PASSWORD
 SUPERUSER_EMAIL
 ```
+
+## Notes
+
+- Whitenoise is used for static assets. See [here](https://devcenter.heroku.com/articles/django-assets).
