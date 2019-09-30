@@ -59,7 +59,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'rerentweb.urls'
 
+# See https://docs.djangoproject.com/en/2.2/topics/templates/
 TEMPLATES = [
+    # The following block is default
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
@@ -71,6 +73,17 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+        },
+    },
+    # And we add in jinja2 support
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates/jinja2'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            # 'environment': 'myproject.jinja2.environment',
         },
     },
 ]
