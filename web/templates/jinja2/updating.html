@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Updating
+{% endblock %}
+
+{% block main %}
+
+<!--Create a form-->
+    <form action="/updating" method="post">
+
+    <!--Update trip title-->
+        <div class="form-group">
+            Trip Title: &nbsp; <input autocomplete="off" class="form-control" name="triptitle" value="{{ trip['triptitle'] }}" type="text"> &emsp; &emsp; &emsp; &emsp; &emsp;
+        </div>
+
+    <!--Update departure date -->
+        <div class="form-group">
+            &nbsp; &nbsp; Leaving: &nbsp; <input autocomplete="off" class="form-control" name="byedate" type="date" value="{{ trip['byedate'] }}"> &emsp; &emsp; &emsp; &emsp; &emsp;
+        </div>
+
+    <!--Update return date-->
+        <div class="form-group">
+            Returning: &nbsp; <input autocomplete="off" class="form-control" name="hidate" type="date" value="{{ trip['hidate'] }}"> &emsp; &emsp; &emsp; &emsp;&emsp;
+        </div>
+
+    <!--Update certainty-->
+        <div class="form-group">
+            <div class="form-check">
+                Certainy: &emsp; &emsp;
+                <input class="form-check-input" type="checkbox"  name="certainty" id="tentative" value="Tentative">
+                <label class="form-check-label" for="tentative"> Tentative </label> &emsp; &emsp;
+
+                <input class="form-check-input" type="checkbox" name="certainty" id="finalized" value="Finalized">
+                <label class="form-check-label" for="finalized"> Finalized </label> &emsp; &emsp; &emsp; &emsp; &emsp;
+            </div>
+        </div>
+
+    <!--Include uid-->
+        <div class="form-group">
+            <input type="hidden" name="uid" value="{{ trip['uid'] }}">
+        </div>
+
+    <!--Submit form-->
+        <button class="btn btn-primary" type="submit"> Updates AwayDays</button> &emsp;
+    </form>
+
+    <!--edited based on staff example-->
+
+</html>
+{% endblock %}
