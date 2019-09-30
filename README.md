@@ -39,7 +39,7 @@ case the app will use the `DATABASE_URL` environment variable instead.
 To start the app, run `docker-compose up`. To bring the app down, run `docker-compose down`.
 
 The first time you start-up in development, or after you make model changes, you'll need
-to run database migrations. With the app running, run `docker-compose exec python manage.py migrate`
+to run database migrations. With the app running, run `docker-compose exec web python manage.py migrate`
 in order to run the migrations.
 
 ## Requirements

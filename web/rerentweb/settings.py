@@ -118,6 +118,9 @@ else:
         'PORT': os.environ['POSTGRES_PORT'],
     }
 
+# Set a custom user model. See
+# https://docs.djangoproject.com/en/2.2/topics/auth/customizing/#using-a-custom-user-model-when-starting-a-project
+AUTH_USER_MODEL = 'awaydays.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
