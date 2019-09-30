@@ -16,6 +16,32 @@ that I used to make some of the design decisions:
 
 You might want to look at those resources.
 
+## Getting started
+
+First, you'll need the following variables in your environment. It is best to keep these in
+a file called `.env` that is ignored by git.
+
+```
+ADMIN_USERNAME=CHANGE-THIS-VALUE
+ADMIN_PASSWORD=CHANGE-THIS-VALUE
+ADMIN_EMAIL=CHANGE-THIS-VALUE
+POSTGRES_PASSWORD=CHANGE-THIS-VALUE
+POSTGRES_USER=CHANGE-THIS-VALUE
+POSTGRES_PASSWORD=CHANGE-THIS-VALUE
+POSTGRES_DB=CHANGE-THIS-VALUE
+POSTGRES_PORT=CHANGE-THIS-VALUE
+```
+
+The `POSTGRES_` values are used to configure the PostgreSQL instance running in a Docker
+container when in development. In production, you might be using Heroku Postgres, in which
+case the app will use the `DATABASE_URL` environment variable instead.
+
+To start the app, run `docker-compose up`. To bring the app down, run `docker-compose down`.
+
+The first time you start-up in development, or after you make model changes, you'll need
+to run database migrations. With the app running, run `docker-compose exec python manage.py migrate`
+in order to run the migrations.
+
 ## Requirements
 
 The requirements for this project are as follows. As a developer...

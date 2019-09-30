@@ -15,9 +15,9 @@ class Migration(migrations.Migration):
         from django.contrib.auth.models import User
 
         superuser = User.objects.create_superuser(
-            username=os.environ.get("SUPERUSER_USERNAME"),
-            email=os.environ.get("SUPERUSER_EMAIL"),
-            password=os.environ.get("SUPERUSER_PASSWORD"))
+            username=os.environ.get("ADMIN_USERNAME"),
+            email=os.environ.get("ADMIN_EMAIL"),
+            password=os.environ.get("ADMIN_PASSWORD"))
 
         superuser.save()
 

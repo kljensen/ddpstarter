@@ -101,15 +101,22 @@ WSGI_APPLICATION = 'rerentweb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
+DATABASES = {}
+if 'DATABASE_URL' is os.environ:
+    # Use DATABASE_URL, which would be provided by Heroku. This is
+    # likely to be the case when we're in production.
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+else:
+    # Use the POSTGRES_* environment variables. This is likely to
+    # be the case when we're in development.
+    DATABASES['default'] = {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
+        'NAME': os.environ['POSTGRES_DB'],
+        'USER': os.environ['POSTGRES_USER'],
         'HOST': 'db',
-        'PORT': 5432,
+        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
+        'PORT': os.environ['POSTGRES_PORT'],
     }
-}
 
 
 # Password validation
