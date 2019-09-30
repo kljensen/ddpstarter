@@ -13,6 +13,3 @@ services:
     depends_on:
       - db
     environment:
-      - SUPERUSER_USERNAME=${SUPERUSER_USERNAME}
-      - SUPERUSER_PASSWORD=${SUPERUSER_PASSWORD}
-      - SUPERUSER_EMAIL=${SUPERUSER_EMAIL}
