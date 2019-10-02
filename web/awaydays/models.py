@@ -21,6 +21,15 @@ class User(AbstractUser, BaseModel):
     pass
 
 
+class Location(BaseModel):
+    # Later you'd add an address here.
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        db_index=True,
+    )
+
+
 class AwayPlan(BaseModel):
     # Old model:
     # CREATE TABLE 'simple' (
@@ -32,17 +41,20 @@ class AwayPlan(BaseModel):
     # 'certainty' text);
 
     CERTAINTY_CHOICES = ['LOW', 'MEDIUM', 'HIGH']
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+    location = models.ForeignKey(
+        Location,
         on_delete=models.CASCADE,
+        db_index=True,
     )
     start_date = models.DateTimeField(
         help_text="The date on which your time away will start",
         verbose_name="trip start date",
+        db_index=True,
     )
     end_date = models.DateTimeField(
         help_text="The date on which you will return home",
         verbose_name="trip end date",
+        db_index=True,
     )
     title = models.TextField(
         help_text="A title for this trip away",
@@ -55,3 +67,4 @@ class AwayPlan(BaseModel):
         choices=enumerate(CERTAINTY_CHOICES),
         verbose_name="trip certainty",
     )
+    cancelled = models.BooleanField(default=False, db_index=True)
