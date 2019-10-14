@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Location list
+{% endblock %}
+
+{% block main %}
+
+<div>
+    {% for plan in object_list %}
+    <span>{{plan.title}}</span><br>
+    <span>{{plan.location.address1}}, {{plan.location.address2}}, {{plan.location.city}}</span><br>
+    <span>Start: {{plan.start_date}}</span><br>
+    <span>End: {{plan.end_date}}</span><br>
+    <span>Certainty: {{plan.certainty}}</span><br>
+    <span>Canceled: {{plan.cancelled}}</span><br>
+    <span></span><br>
+    <a href="{{ url('awayplan_view', args=[plan.id]) }}">view</a><br>
+    <a href="{{ url('awayplan_edit', args=[plan.id]) }}">edit</a><br>
+    <a href="{{ url('awayplan_delete', args=[plan.id]) }}">delete</a><br>
+    {% endfor %}
+</div>
+    <a href="{{ url('awayplan_create') }}">Create new</a><br>
+
+
+{% endblock %}
+

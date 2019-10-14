@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Location list
+{% endblock %}
+
+{% block main %}
+
+<div>
+<h1>AwayPlan Edit</h1>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+</div>
+<div>
+
+</div>
+
+{% endblock %}
+

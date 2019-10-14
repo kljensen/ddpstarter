@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap_datepicker_plus',
     'awaydays'
 ]
 
@@ -154,3 +155,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
