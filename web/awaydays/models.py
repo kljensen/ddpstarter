@@ -1,3 +1,4 @@
+from urllib.parse import urlencode
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
@@ -58,6 +59,10 @@ class Location(BaseModel):
         if len(self.address1) > len_limit:
             sep = "...;"
         return "Location: {0}{1} {2}".format(addr, sep, str(self.city)[:24])
+
+    @property
+    def one_line_string(self):
+        return ",".join((self.address1, self.address2, self.city, self.zip_code))
 
 
 class AwayPlan(BaseModel):

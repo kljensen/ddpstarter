@@ -22,6 +22,10 @@ nav .navbar-brand .green
     color: #2e944b;
 }
 
+main {
+    background-color: white;
+}
+
 main .form-control
 {
     /* center form controls */

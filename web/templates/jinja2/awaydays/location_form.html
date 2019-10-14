@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Location list
+{% endblock %}
+
+{% block main %}
+
+<div>
+<h1>Location Edit</h1>
+<form method="post">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    {{ form.as_p() }}
+    <input type="submit" value="Submit" />
+</form>
+
+
+</div>
+
+{% endblock %}
+

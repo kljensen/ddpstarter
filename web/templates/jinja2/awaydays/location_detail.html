@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Location list
+{% endblock %}
+
+{% block main %}
+
+<div>
+    {% set location = object %}
+    <span>{{location.address1}}</span><br>
+    <span>{{location.address2}}</span><br>
+    <span>{{location.city}}</span><br>
+    <span>{{location.zip_code}}</span><br>
+    <a href="{{ url('location_view', args=[location.id]) }}">view</a><br>
+    <a href="{{ url('location_edit', args=[location.id]) }}">edit</a><br>
+    <a href="{{ url('location_delete', args=[location.id]) }}">delete</a><br>
+</div>
+<div>
+
+</div>
+
+{% endblock %}
+
