@@ -28,6 +28,36 @@ class Location(BaseModel):
         on_delete=models.CASCADE,
         db_index=True,
     )
+    address1 = models.CharField(
+        "Address line 1",
+        max_length=128,
+    )
+    address2 = models.CharField(
+        "Address line 2",
+        max_length=128,
+        default="",
+        blank=True,
+    )
+    zip_code = models.CharField(
+        "ZIP / Postal code",
+        max_length=12,
+    )
+    city = models.CharField(
+        "City",
+        max_length=64,
+    )
+    notes = models.TextField(
+        "notes",
+        max_length=4096,
+    )
+
+    def __str__(self):
+        len_limit = 20
+        sep = ";"
+        addr = str(self.address1)[:len_limit]
+        if len(self.address1) > len_limit:
+            sep = "...;"
+        return "Location: {0}{1} {2}".format(addr, sep, str(self.city)[:24])
 
 
 class AwayPlan(BaseModel):
@@ -56,7 +86,7 @@ class AwayPlan(BaseModel):
         verbose_name="trip end date",
         db_index=True,
     )
-    title = models.TextField(
+    title = models.CharField(
         help_text="A title for this trip away",
         max_length=150,
         verbose_name="trip title",
@@ -68,3 +98,6 @@ class AwayPlan(BaseModel):
         verbose_name="trip certainty",
     )
     cancelled = models.BooleanField(default=False, db_index=True)
+
+    def __str__(self):
+        return "AwayPlan: {0} -> {1}".format(self.start_date, self.end_date)
