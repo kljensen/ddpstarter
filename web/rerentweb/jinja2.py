@@ -3,6 +3,7 @@
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import reverse
 from jinja2 import Environment
+from bootstrap4.templatetags.bootstrap4 import bootstrap_css, bootstrap_javascript
 
 
 def environment(**options):
@@ -10,5 +11,7 @@ def environment(**options):
     env.globals.update({
         "static": staticfiles_storage.url,
         "url": reverse,
+        "bootstrap_javascript": bootstrap_javascript,
+        "bootstrap_css": bootstrap_css
     })
     return env
