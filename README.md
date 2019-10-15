@@ -1,6 +1,6 @@
 # Docker, Django, PostgreSQL starter (Incomplete, work-in-progress)
 
-This will be a simple starter for a
+This is a simple starter for a
 [Django](https://www.djangoproject.com/) app with a
 [PostgreSQL](https://www.postgresql.org/) backend
 running inside [Docker](https://www.docker.com/)
@@ -37,48 +37,29 @@ The `POSTGRES_` values are used to configure the PostgreSQL instance running in 
 container when in development. In production, you might be using Heroku Postgres, in which
 case the app will use the `DATABASE_URL` environment variable instead.
 
+You'll need [docker](https://docs.docker.com/install/) to run this app on your
+computer. I assume you'll run production on [Heroku](https://www.heroku.com)
+and included the files necessary to do so using
+[Heroku Docker deploys](https://devcenter.heroku.com/articles/build-docker-images-heroku-yml)
+
 To start the app, run `docker-compose up`. To bring the app down, run `docker-compose down`.
 
 The first time you start-up in development, or after you make model changes, you'll need
 to run database migrations. With the app running, run `docker-compose exec web python manage.py migrate`
 in order to run the migrations.
 
-## Requirements
+## Changing the models
 
-The requirements for this project are as follows. As a developer...
-
-1. I should be able start my app using [docker-compose](https://docs.docker.com/compose/)
-2. I should be able to create all the "fixtures" for my database, easily, such
-   as superuser accounts and associated passwords.
-3. I should be able to specify any URL for the PostgreSQL database, e.g.
-   either locally in docker or remotely if I'm using a hosted PostgreSQL
-   instance as I might find on Heroku or AWS.
-4. I can run various Django admin functions such as migrations.
-5. I can deploy my app on Heroku.
-6. I can turn on "debugging" or "development mode" when working locally.
-7. I can practice test driven development.
-8. I can write end-to-end tests and run them in development.
-9. I can use continuous deployment with GitHub and [Heroku Pipelines](https://devcenter.heroku.com/articles/pipelines).
-
-## Bootstrapping new deployment
-
-If you're deploying to a fresh environment, you'll
-need to run the following
+If you change the models you'll need new migrations. Run
 
 ```
-docker-compose exec web python manage.py migrate auth
-docker-compose exec web python manage.py migrate
+docker-compose exec web python manage.py makemigration -n SOMENAMEHERE
 ```
 
-There are some data migrations, e.g. `./web/awaydays/migrations/0001_initial.py` will add a super user based on the following
-environment variables:
-
-```
-SUPERUSER_USERNAME
-SUPERUSER_PASSWORD
-SUPERUSER_EMAIL
-```
+You'll see a new migration file that you can add to version control.
+See [Django migrations](https://docs.djangoproject.com/en/2.2/topics/migrations/).
 
 ## Notes
 
 - Whitenoise is used for static assets. See [here](https://devcenter.heroku.com/articles/django-assets).
+- [Gunicorn](https://docs.djangoproject.com/en/2.2/howto/deployment/wsgi/gunicorn/) is used in production on heroku.
