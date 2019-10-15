@@ -16,17 +16,24 @@ import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'j_p_6$ibs!jzmwora9*xs8e1l6rbgr0o4wlev4drk1zg=7c0q_'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if 'DEVELOPMENT' in os.environ:
+    DEBUG = True
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+else:
+    DEBUG = False
+    ALLOWED_HOSTS = ['.herokuapp.com']
 
-ALLOWED_HOSTS = []
+# Allow all host headers for Heroku deploy
 
 
 # Application definition
