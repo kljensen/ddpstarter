@@ -104,7 +104,7 @@ WSGI_APPLICATION = 'rerentweb.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {}
-if 'DATABASE_URL' is os.environ:
+if 'DATABASE_URL' in os.environ:
     # Use DATABASE_URL, which would be provided by Heroku. This is
     # likely to be the case when we're in production.
     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
